@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>关于我</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../static/css/me.css">
+</head>
+<body class="types-bg">
+    <!--导航-->
+    <!--头部导航-->
+    <nav class="ui attached segment m-padded-tb-mini m-shadow-small" >
+        <div class="ui container">
+            <div class="ui secondary stackable menu">
+                <h1 class="ui black header item">HshengZ</h1>
+                <a href="../index.html" class="m-item item blue m-mobile-hide "><i class=" home icon"></i>首页</a>
+                <a href="/types/-1" class="m-item violet item m-mobile-hide"><i class=" idea icon"></i>分类</a>
+                <a href="/tags/-1" class="m-item pink item m-mobile-hide"><i class=" tags icon"></i>标签</a>
+                <a href="/archives" class="m-item orange item m-mobile-hide"><i class=" clone icon"></i>时间线</a>
+                <a href="/about" class="m-item green item m-mobile-hide"><i class=" info icon"></i>关于我</a>
+                <div class="right m-item item m-mobile-hide">
+                    <form name="search" action="/search" method="post" target="_blank">
+                        <div class="ui icon  transparent input m-margin-tb-tiny">
+                            <input type="text" name="query" placeholder="Search...." value="">
+                            <i class="search link icon"></i>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+
+    <!--中间内容-->
+    <div class="m-container m-padded-tb-big animated fadeIn">
+       <div class="ui container">
+           <div class="ui stackable grid">
+               <div class="eleven wide column">
+                   <div class="ui segment">
+                       <img src="../static/image/aboutMe.jpg" alt="" class="ui rounded image">
+                   </div>
+               </div>
+               <div class="five wide column">
+                   <div class="ui top attached segment">
+                       <div class="ui header">关于我</div>
+                   </div>
+                   <div class="ui attached segment">
+                       <p class="m-text">黄胜仲，一个java小白，一个编程爱好者（沙雕）</p>
+                       <p class="m-text">喜欢编程，喜欢动漫，喜欢美食</p>
+                       <p class="m-text">希望结识志趣相投的小伙伴.</p>
+                   </div>
+                   <div class="ui attached segment">
+                       <div class="ui orange basic left pointing label">编程</div>
+                       <div class="ui orange basic left pointing label">吃吃吃</div>
+                       <div class="ui orange basic left pointing label">看电影</div>
+                       <div class="ui orange basic left pointing label">听音乐</div>
+                   </div>
+                   <div class="ui attached segment">
+                       <div class="ui teal basic left pointing label m-margin-tb-tiny">SSM</div>
+                       <div class="ui teal basic left pointing label m-margin-tb-tiny">SpringBoot</div>
+                       <div class="ui teal basic left pointing label m-margin-tb-tiny">MySQL</div>
+                       <div class="ui teal basic left pointing label m-margin-tb-tiny">HTML</div>
+                       <div class="ui teal basic left pointing label m-margin-tb-tiny">JavaScript</div>
+                       <div class="ui teal basic left pointing label m-margin-tb-tiny">Linux</div>
+                       <div class="ui teal basic left pointing label m-margin-tb-tiny">...</div>
+                   </div>
+                   <div class="ui bottom attached segment">
+                       <a href="https://github.com/Mitsuha666/blog" target="_blank" class="ui circular icon button"><i class="github icon"></i></a>
+                       <a href="#" class="ui wechat circular icon button"><i class="weixin icon"></i></a>
+                       <a href="#" class="ui qq circular icon button" data-content="764385741" data-position="bottom center"><i class="qq icon"></i></a>
+                   </div>
+
+                   <div class="ui wechat-qr flowing popup transition hidden">
+                       <img src="../static/image/wechat.png" alt="" class="ui rounded image" style="width: 110px">
+                   </div>
+               </div>
+           </div>
+       </div>
+    </div>
+
+    <!--底部-->
+    <footer class="ui inverted vertical segment m-padded-tb-massive m-opacity" style="flex: 1 0 auto">
+      <div class="ui center aligned container">
+          <div class="ui inverted divided stackable grid">
+              <div class="three wide column">
+                  <img src="../static/image/wechat.png" alt="" class="ui rounded image" style="width: 120px">
+              </div>
+              <div class="four wide column">
+                  <h4 class="inverted ui header">最新博客</h4>
+                  <div class="ui inverted header link list">
+                      <a href="#" class="item">springboot小而美博客教程</a>
+                      <a href="#" class="item">springboot小而美博客教程</a>
+                      <a href="#" class="item">springboot小而美博客教程</a>
+                  </div>
+              </div>
+              <div class="four wide column">
+                  <h4 class="inverted ui header">联系我</h4>
+                  <div class="ui inverted header link list">
+                      <a href="#" class="item">Email:764385741@qq.com</a>
+                      <a href="#" class="item">QQ:764385741</a>
+                  </div>
+              </div>
+              <div class="five wide column">
+                  <h4 class="inverted ui header">关于我</h4>
+                  <p class="m-text-spaced m-text-lined m-opacity-mini">这是我的个人博客，会分享一些关于编程的知识，希望给来到这里的人提供一些帮助。</p>
+              </div>
+
+          </div>
+          <div class="ui inverted section divider"></div>
+          <p class="m-text-thin m-opacity">备案号ddddddddd</p>
+      </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <script>
+        //菜单按钮
+        $('.menu.toggle').click(function () {
+            $('.m-item').toggleClass('m-mobile-hide');
+        });
+        $('.wechat').popup({
+            popup : $('.wechat-qr'),
+            position: 'bottom center'
+        });
+        $('.qq').popup();
+    </script>
+</body>
+</html>

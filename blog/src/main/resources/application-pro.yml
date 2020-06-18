@@ -1,0 +1,18 @@
+#生成环境配置
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 764385741
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+logging:
+  level:
+    root: warn
+    com.hshengz.blog: info
+  file: log/blog-pro.log
+server:
+  port: 8099

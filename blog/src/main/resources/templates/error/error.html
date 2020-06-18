@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>500</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/semantic-ui/2.2.4/semantic.min.css">
+  <link rel="stylesheet" href="../../static/css/typo.css">
+  <link rel="stylesheet" href="../../static/css/animate.css">
+  <link rel="stylesheet" href="../../static/lib/prism/prism.css">
+  <link rel="stylesheet" href="../../static/lib/tocbot/tocbot.css">
+  <link rel="stylesheet" href="../../static/css/me.css">
+</head>
+<body>
+
+<!--导航-->
+<!--头部导航-->
+<nav class="ui attached segment m-padded-tb-mini m-shadow-small animated fadeInLeft">
+  <div class="ui container">
+    <div class="ui secondary stackable menu ">
+      <h1 class="ui blue header item ">HshengZ</h1>
+      <a href="index.html" class="m-item item blue m-mobile-hide "><i class=" home icon"></i>首页</a>
+      <a href="/types/-1" class="m-item violet item m-mobile-hide"><i class=" idea icon"></i>分类</a>
+      <a href="/tags/-1" class="m-item pink item m-mobile-hide"><i class=" tags icon"></i>标签</a>
+      <a href="/archives" class="m-item orange item m-mobile-hide"><i class=" clone icon"></i>时间线</a>
+      <a href="/about" class="m-item green item m-mobile-hide"><i class=" info icon"></i>关于我</a>
+      <div class="right m-item item m-mobile-hide">
+        <form name="search" action="/search" method="post" target="_blank">
+          <div class="ui icon  transparent input m-margin-tb-tiny">
+            <input type="text" name="query" placeholder="Search...." value="">
+            <i class="search link icon"></i>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+    <i class="sidebar icon"></i>
+  </a>
+</nav>
+
+<br>
+<br>
+<br>
+
+<div class="m-container-small m-padded-tb-massive">
+  <div class="ui error message m-padded-tb-huge" >
+    <div class="ui contianer">
+      <h2>500</h2>
+      <p>对不起，服务异常，请联系管理员</p>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+
+
+<footer class="ui inverted vertical segment m-padded-tb-massive">
+  <div class="ui center aligned container">
+    <div class="ui inverted divided stackable grid">
+      <div class="three wide column">
+        <img src="../../static/image/wechat.png" alt="" class="ui rounded image" style="width: 120px">
+      </div>
+      <div class="four wide column">
+        <h4 class="inverted ui header">最新博客</h4>
+        <div class="ui inverted header link list">
+          <a href="#" class="item">springboot小而美博客教程</a>
+          <a href="#" class="item">springboot小而美博客教程</a>
+          <a href="#" class="item">springboot小而美博客教程</a>
+        </div>
+      </div>
+      <div class="four wide column">
+        <h4 class="inverted ui header">联系我</h4>
+        <div class="ui inverted header link list">
+          <a href="#" class="item">Email:764385741@qq.com</a>
+          <a href="#" class="item">QQ:764385741</a>
+        </div>
+      </div>
+      <div class="five wide column">
+        <h4 class="inverted ui header">关于我</h4>
+        <p class="m-text-spaced m-text-lined m-opacity-mini">这是我的个人博客，会分享一些关于编程的知识，希望给来到这里的人提供一些帮助。</p>
+      </div>
+
+    </div>
+    <div class="ui inverted section divider"></div>
+    <p class="m-text-thin m-opacity">备案号ddddddddd</p>
+  </div>
+
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+<script src="../../static/lib/prism/prism.js"></script>
+<script src="../../static/lib/tocbot/tocbot.min.js"></script>
+<script src="../../static/lib/qrcode/qrcode.min.js"></script>
+<script src="../../static/lib/waypoints/jquery.waypoints.min.js"></script>
+<script>
+  //菜单按钮
+  $('.menu.toggle').click(function () {
+    $('.m-item').toggleClass('m-mobile-hide');
+  });
+</script>
+</body>
+</html>

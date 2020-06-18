@@ -1,0 +1,10 @@
+spring:
+  thymeleaf:
+    mode: HTML
+    cache: false #关闭缓存
+  profiles:
+    active: dev #指定当前的配置文件
+  resources:
+    static-locations: classpath:/templates/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+  mvc:
+    static-path-pattern: /static/**
