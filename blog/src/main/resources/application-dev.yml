@@ -9,6 +9,10 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  servlet:
+    multipart:
+      max-file-size: 10MB # 限制文件上传的大小
+      enabled: true
 logging:
   level:
     root: info
@@ -16,3 +20,12 @@ logging:
   file: log/blog-dev.log
 server:
   port: 9099
+
+fdfs:
+  so-timeout: 1501 # 超时时间
+  connect-timeout: 601 # 连接超时时间
+  thumb-image: # 缩略图
+    width: 60
+    height: 60
+  tracker-list: # tracker地址：
+    - 120.77.247.188:22122

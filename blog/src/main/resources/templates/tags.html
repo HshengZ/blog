@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <title>标签</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
@@ -10,7 +10,7 @@
 <body class="tags-bg">
     <!--导航-->
     <!--头部导航-->
-    <nav class="ui attached segment m-padded-tb-mini m-shadow-small animated tada" >
+    <nav th:replace="_fragments :: menu(3)" class="ui attached segment m-padded-tb-mini m-shadow-small animated tada" >
         <div class="ui container">
             <div class="ui secondary stackable menu">
                 <h1 class="ui orange header item">HshengZ</h1>
@@ -44,159 +44,84 @@
                        <h3 class="ui yellow header">标签</h3>
                    </div>
                    <div class="right aligned column">
-                       共 <h2 class="ui orange header m-inline-block"> 14 </h2>篇
+                       共 <h2 class="ui orange header m-inline-block" th:text="${#arrays.length(tags)}"> 14 </h2>个
                    </div>
                </div>
            </div>
            <!--分类列表-->
            <div class="ui bottom attached segment m-padded-tb-large animated fadeIn">
-               <a href="#" class="ui yellow basic left pointing label m-margin-tb-tiny">方法论
-                   <div class="detail">23</div>
-               </a>
-               <a href="#" class="ui  basic left pointing label m-margin-tb-tiny">方法论
-                   <div class="detail">23</div>
-               </a>
-               <a href="#" class="ui  basic left pointing label m-margin-tb-tiny">方法论
-                   <div class="detail">23</div>
+               <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" class="ui  basic left pointing label m-margin-tb-tiny" th:each="tag:${tags}" th:classappend="${tag.id==activeTagID} ? 'yellow'">
+                   <span th:text="${tag.name}">方法论</span>
+                   <div class="detail" th:text="${#arrays.length(tag.blogs)}">23</div>
                </a>
            </div>
            <!--博客列表-->
-           <div class="ui top attached segment orange animated fadeInUp">
-               <div class="ui padded vertical segment m-padded-tb-large m-mobile-lr-clear">
-                   <div class="ui mobile reversed stackable grid">
+           <div class="ui top attached segment orange animated ">
+               <div class="ui padded vertical segment m-padded-tb-large m-mobile-lr-clear" th:each="blog :${page.content}">
+                   <div class="ui mobile reversed stackable grid ">
                        <div class="eleven wide column">
-                           <h3 class="ui header">愿你编码半生，归来仍是少年</h3>
-                           <p>多年以后，愿你的城市有清风有烈酒，也有人是你的归途，愿你编码半生，归来仍是少年，愿时机已成熟，已是枝繁叶茂！......</p>
+                           <h3 class="ui header"><a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="m-black" th:text="${blog.title}">愿你编码半生，归来仍是少年</a>
+                           </h3>
+                           <p th:text="|${blog.description}.....|">
+                               多年以后，愿你的城市有清风有烈酒，也有人是你的归途，愿你编码半生，归来仍是少年，愿时机已成熟，已是枝繁叶茂！......</p>
                            <div class="ui stackable grid">
                                <div class="row">
                                    <div class="eleven wide column">
                                        <div class="ui horizontal link list">
                                            <div class="item">
-                                               <img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1592219452&di=f67e23384769c971cfe42ce7da23fdbe&src=http://wechat.shwilling.com/uploads/ueditor/image/20160821/1471760931761147.jpg" alt="" class="ui avatar image">
-                                               <div class="content"><a href="#" class="header">HshengZ</a></div>
+                                               <img th:src="@{${blog.user.avatar}}"
+                                                    src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1592219452&di=f67e23384769c971cfe42ce7da23fdbe&src=http://wechat.shwilling.com/uploads/ueditor/image/20160821/1471760931761147.jpg"
+                                                    alt="" class="ui avatar image">
+                                               <div class="content"><a href="#" class="header"
+                                                                       th:text="${blog.user.nickname}">HshengZ</a></div>
                                            </div>
                                            <div class="item">
-                                               <i class="calendar icon"></i>2020-6-15
+                                               <i class="calendar icon"></i><span
+                                                   th:text="${#dates.format(blog.updateTime,'yyyy:MM:dd')}">2020-6-15</span>
                                            </div>
                                            <div class="item">
-                                               <i class="eye icon"></i>123
+                                               <i class="eye icon"></i><span th:text="${blog.views}">123</span>
                                            </div>
                                        </div>
                                    </div>
                                    <div class="right aligned five wide column">
-                                       <a href="#" target="_blank" class="ui orange basic label m-padded-tb-tiny m-text-thin">认知升级</a>
+                                       <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" th:text="${blog.type.name}" target="_blank"
+                                          class="ui orange basic label m-padded-tb-tiny m-text-thin">认知升级</a>
                                    </div>
                                </div>
-                              <div class="row">
-                                    <a href="#" class="ui orange basic left pointing label m-padded-tb-mini">方法论
-                                      <div class="detail">23</div>
-                                  </a>
-                              </div>
-
+                               <div class="row">
+                                   <div class="column">
+                                       <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="ui basic left pointing label m-padded-mini m-text-thin" th:classappend="${tag.id==activeTagID} ? 'yellow'" th:each="tag:${blog.tags}" th:text="${tag.name}">方法论</a>
+                                   </div>
+                               </div>
                            </div>
                        </div>
                        <div class="right aligned five wide column">
-                           <a href="/blog/4" target="_blank">
-                               <img src="https://i.picsum.photos/id/1035/5854/3903.jpg?hmac=DV0AS2MyjW6ddofvSIU9TVjj1kewfh7J3WEOvflY8TM" alt="" class="ui rounded image">
+                           <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                               <img class="ui rounded image" th:src="@{${blog.firstPicture}}"
+                                    src="https://i.picsum.photos/id/1035/5854/3903.jpg?hmac=DV0AS2MyjW6ddofvSIU9TVjj1kewfh7J3WEOvflY8TM"
+                                    alt="">
                            </a>
 
                        </div>
                    </div>
                </div>
-               <div class="ui padded vertical segment m-padded-tb-large m-mobile-lr-clear">
-                   <div class="ui mobile reversed stackable grid">
-                       <div class="eleven wide column">
-                           <h3 class="ui header">愿你编码半生，归来仍是少年</h3>
-                           <p>多年以后，愿你的城市有清风有烈酒，也有人是你的归途，愿你编码半生，归来仍是少年，愿时机已成熟，已是枝繁叶茂！......</p>
-                           <div class="ui stackable grid">
-                               <div class="row">
-                                   <div class="eleven wide column">
-                                       <div class="ui horizontal link list">
-                                           <div class="item">
-                                               <img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1592219452&di=f67e23384769c971cfe42ce7da23fdbe&src=http://wechat.shwilling.com/uploads/ueditor/image/20160821/1471760931761147.jpg" alt="" class="ui avatar image">
-                                               <div class="content"><a href="#" class="header">HshengZ</a></div>
-                                           </div>
-                                           <div class="item">
-                                               <i class="calendar icon"></i>2020-6-15
-                                           </div>
-                                           <div class="item">
-                                               <i class="eye icon"></i>123
-                                           </div>
-                                       </div>
-                                   </div>
-                                   <div class="right aligned five wide column">
-                                       <a href="#" target="_blank" class="ui orange basic label m-padded-tb-tiny m-text-thin">认知升级</a>
-                                   </div>
-                               </div>
-                               <div class="row">
-                                   <a href="#" class="ui orange basic left pointing label m-padded-tb-mini">方法论
-                                       <div class="detail">23</div>
-                                   </a>
-                               </div>
 
-                           </div>
-                       </div>
-                       <div class="right aligned five wide column">
-                           <a href="/blog/4" target="_blank">
-                               <img src="https://i.picsum.photos/id/1035/5854/3903.jpg?hmac=DV0AS2MyjW6ddofvSIU9TVjj1kewfh7J3WEOvflY8TM" alt="" class="ui rounded image">
-                           </a>
-
-                       </div>
-                   </div>
-               </div>
-               <div class="ui padded vertical segment m-padded-tb-large m-mobile-lr-clear">
-                   <div class="ui mobile reversed stackable grid">
-                       <div class="eleven wide column">
-                           <h3 class="ui header">愿你编码半生，归来仍是少年</h3>
-                           <p>多年以后，愿你的城市有清风有烈酒，也有人是你的归途，愿你编码半生，归来仍是少年，愿时机已成熟，已是枝繁叶茂！......</p>
-                           <div class="ui stackable grid">
-                               <div class="row">
-                                   <div class="eleven wide column">
-                                       <div class="ui horizontal link list">
-                                           <div class="item">
-                                               <img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1592219452&di=f67e23384769c971cfe42ce7da23fdbe&src=http://wechat.shwilling.com/uploads/ueditor/image/20160821/1471760931761147.jpg" alt="" class="ui avatar image">
-                                               <div class="content"><a href="#" class="header">HshengZ</a></div>
-                                           </div>
-                                           <div class="item">
-                                               <i class="calendar icon"></i>2020-6-15
-                                           </div>
-                                           <div class="item">
-                                               <i class="eye icon"></i>123
-                                           </div>
-                                       </div>
-                                   </div>
-                                   <div class="right aligned five wide column">
-                                       <a href="#" target="_blank" class="ui orange basic label m-padded-tb-tiny m-text-thin">认知升级</a>
-                                   </div>
-                               </div>
-                               <div class="row">
-                                   <a href="#" class="ui orange basic left pointing label m-padded-tb-mini">方法论
-                                       <div class="detail">23</div>
-                                   </a>
-                               </div>
-
-                           </div>
-                       </div>
-                       <div class="right aligned five wide column">
-                           <a href="/blog/4" target="_blank">
-                               <img src="https://i.picsum.photos/id/1035/5854/3903.jpg?hmac=DV0AS2MyjW6ddofvSIU9TVjj1kewfh7J3WEOvflY8TM" alt="" class="ui rounded image">
-                           </a>
-
-                       </div>
-                   </div>
-               </div>
            </div>
            <!--footer-->
-           <div class="ui bottom  attached segment animated fadeInUp">
-               <div class="ui middle aligned three column grid">
+           <div class="ui bottom  attached segment" th:if="${page.totalPages}>1">
+               <div class="ui middle aligned three column grid ">
                    <div class="column">
-                       <a href="#" class="ui mini yellow  basic button">上一页</a>
+                       <a href="#" th:href="@{/tags/{id}(page=${page.number}-1,id=${activeTagID})}" th:unless="${page.first}"
+                          class="ui mini blue  basic button">上一页</a>
                    </div>
                    <div class="column center aligned">
-                       <p>1/3</p>
+                       <p><b><span th:text="${page.number}+1">1</span></b>/<span th:text="${page.totalPages}">3</span>
+                       </p>
                    </div>
                    <div class="right aligned column">
-                       <a href="#" class="ui mini yellow  basic button">下一页</a>
+                       <a href="#" th:href="@{/tags/{id}(page=${page.number}+1,id=${activeTagID})}" th:unless="${page.last}"
+                          class="ui mini blue  basic button">下一页</a>
                    </div>
                </div>
            </div>
@@ -204,7 +129,7 @@
     </div>
 
     <!--底部-->
-    <footer class="ui inverted vertical segment m-padded-tb-massive m-opacity" style="flex: 1 0 auto">
+    <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive m-opacity" style="flex: 1 0 auto">
       <div class="ui center aligned container">
           <div class="ui inverted divided stackable grid">
               <div class="three wide column">
@@ -235,9 +160,10 @@
           <p class="m-text-thin m-opacity">备案号ddddddddd</p>
       </div>
     </footer>
-
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
 <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
     <script>
         //菜单按钮
         $('.menu.toggle').click(function () {

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <title>归档</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
@@ -9,7 +9,7 @@
 <body class="types-bg">
     <!--导航-->
     <!--头部导航-->
-    <nav class="ui attached segment m-padded-tb-mini m-shadow-small" >
+    <nav th:replace="_fragments :: menu(4)" class="ui attached segment m-padded-tb-mini m-shadow-small" >
         <div class="ui container">
             <div class="ui secondary stackable menu">
                 <h1 class="ui black header item">HshengZ</h1>
@@ -43,39 +43,49 @@
                        <h3 class="ui blue header">归档</h3>
                    </div>
                    <div class="right aligned column">
-                       共 <h2 class="ui orange header m-inline-block"> 14 </h2>篇
+                       共 <h2 class="ui orange header m-inline-block" th:text="${count}"> 14 </h2>篇
                    </div>
                </div>
            </div>
-            <h2 class="ui center aligned header">2020</h2>
-            <div class="ui fluid vertical menu">
-                <a href="#" class="item">
+            <th:block th:each="item :${archiveMap}">
+                <h2 class="ui center aligned header" th:text="${item.key}">2020</h2>
+                <div class="ui fluid vertical menu">
+                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" class="item" th:each="blog :${item.value}">
+                    <span >
+                        <i class="mini teal circle icon" ></i><span th:text="${blog.title}">spring基础教程</span>
+                    <div class="ui teal basic left pointing label m-padded-mini" th:text="${#dates.format(blog.updateTime,'MM-dd')}">6月12</div>
+                    </span>
+                        <div class="ui red basic left pointing label m-padded-mini" th:text="${blog.flag}">原创</div>
+                    </a>
+
+                    <!--/*-->
+                    <a href="#" class="item">
                     <span>
                         <i class="mini teal circle icon"></i>spring基础教程
                     <div class="ui teal basic left pointing label m-padded-mini">6月12</div>
                     </span>
-                    <div class="ui red basic left pointing label m-padded-mini">原创</div>
-                </a>
-                <a href="#" class="item">
+                        <div class="ui red basic left pointing label m-padded-mini">原创</div>
+                    </a>
+                    <a href="#" class="item">
                     <span>
                         <i class="mini teal circle icon"></i>spring基础教程
                     <div class="ui teal basic left pointing label m-padded-mini">6月12</div>
                     </span>
-                    <div class="ui red basic left pointing label m-padded-mini">原创</div>
-                </a>
-                <a href="#" class="item">
-                    <span>
-                        <i class="mini teal circle icon"></i>spring基础教程
-                    <div class="ui teal basic left pointing label m-padded-mini">6月12</div>
-                    </span>
-                    <div class="ui red basic left pointing label m-padded-mini">原创</div>
-                </a>
-            </div>
+                        <div class="ui red basic left pointing label m-padded-mini">原创</div>
+                    </a>
+                    <!--*/-->
+                </div>
+            </th:block>
+
        </div>
     </div>
-
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <!--底部-->
-    <footer class="ui inverted vertical segment m-padded-tb-massive m-opacity" style="flex: 1 0 auto">
+    <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive m-opacity" style="flex: 1 0 auto">
       <div class="ui center aligned container">
           <div class="ui inverted divided stackable grid">
               <div class="three wide column">
@@ -106,9 +116,10 @@
           <p class="m-text-thin m-opacity">备案号ddddddddd</p>
       </div>
     </footer>
-
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
 <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
     <script>
         //菜单按钮
         $('.menu.toggle').click(function () {

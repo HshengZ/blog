@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="admin/_fragments :: head(~{::title})">
+    <meta charset="UTF-8">
+    <title>分类添加</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css">
+    <link rel="stylesheet" href="../../static/css/me.css">
+</head>
+<body class="blog-bg">
+<!--导航-->
+<!--头部导航-->
+<nav th:replace="admin/_fragments :: menu(2)" class="ui attached segment m-padded-tb-mini m-shadow-small">
+    <div class="ui container">
+        <div class="ui secondary stackable menu">
+            <h1 class="ui blue header item">HshengZ</h1>
+            <a href="#" class="active m-item item m-mobile-hide"><i class="mini home icon"></i>博客</a>
+            <a href="#" class=" m-item item m-mobile-hide"><i class="mini idea icon"></i>分类</a>
+            <a href="#" class="m-item item m-mobile-hide"><i class="mini tags icon"></i>标签</a>
+            <div class="right m-item menu m-mobile-hide">
+                <div class="ui dropdown item">
+                    <div class="text">
+                        <img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1592219452&di=f67e23384769c971cfe42ce7da23fdbe&src=http://wechat.shwilling.com/uploads/ueditor/image/20160821/1471760931761147.jpg"
+                             alt="" class="ui avatar image">
+                        HshengZ
+                    </div>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <a href="#" class="item">注销</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="ui menu toggle black icon button m-right-top m-mobile-show">
+        <i class="sidebar icon"></i>
+    </a>
+</nav>
+<div class="ui attached pointing menu">
+    <div class="ui container">
+        <div class="right menu">
+            <a href="#" th:href="@{/admin/types/input}" class="active item">新增</a>
+            <a href="#" th:href="@{/admin/types}" class="teal  item">列表</a>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<!--中间内容-->
+<!--中间内容-->
+<div  class="m-container-small m-padded-tb-big">
+    <div class="ui container">
+        <form action="#" method="post"  th:object="${type}" th:action="*{id}==null ? @{/admin/types} : @{/admin/types/{id}(id=*{id})} "  class="ui form">
+            <input type="hidden" name="id" th:value="*{id}">
+            <div class=" field">
+                <div class="ui left labeled input">
+                    <label class="ui teal basic label">名称</label>
+                    <input type="text" name="name" placeholder="分类名称" th:value="*{name}" >
+                </div>
+            </div>
+
+            <div class="ui error message"></div>
+            <!--/*/
+            <div class="ui negative message" th:if="${#fields.hasErrors('name')}"  >
+              <i class="close icon"></i>
+              <div class="header">验证失败</div>
+              <p th:errors="*{name}">提交信息不符合规则</p>
+            </div>
+             /*/-->
+            <div class="ui right aligned container">
+                <button type="button" class="ui button" onclick="window.history.go(-1)" >返回</button>
+                <button class="ui teal submit button">提交</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<!--底部-->
+<footer th:replace="admin/_fragments :: footer" class="ui inverted vertical segment m-padded-tb-large m-opacity" style="flex: 1 0 auto">
+    <div class="ui center aligned container">
+        <div class="ui inverted divided stackable grid">
+            <div class="three wide column">
+                <img src="../../static/image/wechat.png" alt="" class="ui rounded image" style="width: 120px">
+            </div>
+            <div class="four wide column">
+                <h4 class="inverted ui header">最新博客</h4>
+                <div class="ui inverted header link list">
+                    <a href="#" class="item">springboot小而美博客教程</a>
+                    <a href="#" class="item">springboot小而美博客教程</a>
+                    <a href="#" class="item">springboot小而美博客教程</a>
+                </div>
+            </div>
+            <div class="four wide column">
+                <h4 class="inverted ui header">联系我</h4>
+                <div class="ui inverted header link list">
+                    <a href="#" class="item">Email:764385741@qq.com</a>
+                    <a href="#" class="item">QQ:764385741</a>
+                </div>
+            </div>
+            <div class="five wide column">
+                <h4 class="inverted ui header">关于我</h4>
+                <p class="m-text-spaced m-text-lined m-opacity-mini">这是我的个人博客，会分享一些关于编程的知识，希望给来到这里的人提供一些帮助。</p>
+            </div>
+
+        </div>
+        <div class="ui inverted section divider"></div>
+        <p class="m-text-thin m-opacity">备案号ddddddddd</p>
+    </div>
+</footer>
+<!--/*/<th:block th:replace="admin/_fragments :: script">/*/-->
+<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script src="../../static/lib/editormd/editormd.min.js"></script>
+
+<!--/*/</th:block>/*/-->
+<script>
+    //菜单按钮
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+    $('.ui.dropdown')
+        .dropdown()
+    ;
+    //初始化Markdown编辑器
+    var contentEditor;
+    $(function() {
+        contentEditor = editormd("md-content", {
+            width   : "100%",
+            height  : 640,
+            syncScrolling : "single",
+            path    : "../../static/lib/editormd/lib/"
+        });
+    });
+    $('.menu.toggle').click(function () {
+        $('.m-item').toggleClass('m-mobile-hide');
+    });
+
+    $('.ui.dropdown').dropdown({
+        on : 'hover'
+    });
+
+    $('.ui.form').form({
+        fields : {
+            title : {
+                identifier: 'title',
+                rules: [{
+                    type : 'empty',
+                    prompt: '标题：请输入博客标题'
+                }]
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

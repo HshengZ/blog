@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head >
+<head th:replace="_fragments :: head(~{::title})" >
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>博客</title>
@@ -16,7 +16,7 @@
 
 <!--导航-->
 <!--头部导航-->
-<nav  class="ui attached segment m-padded-tb-mini m-shadow-small animated fadeInLeft">
+<nav th:replace="_fragments :: menu(1)" class="ui attached segment m-padded-tb-mini m-shadow-small animated fadeInLeft">
   <div class="ui container">
     <div class="ui secondary stackable menu ">
       <h1 class="ui blue header item ">HshengZ</h1>
@@ -57,7 +57,7 @@
 <br>
 
 
-<footer class="ui inverted vertical segment m-padded-tb-massive m-opacity">
+<footer th:replace="_fragments :: footer"  class="ui inverted vertical segment m-padded-tb-massive m-opacity">
   <div class="ui center aligned container">
     <div class="ui inverted divided stackable grid">
       <div class="three wide column">
@@ -90,7 +90,7 @@
 
 </footer>
 
-
+<!--/*/<th:block th:replace="_fragments :: script">/*/-->
 <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
@@ -98,6 +98,7 @@
 <script src="../../static/lib/tocbot/tocbot.min.js"></script>
 <script src="../../static/lib/qrcode/qrcode.min.js"></script>
 <script src="../../static/lib/waypoints/jquery.waypoints.min.js"></script>
+<!--/*/</th:block>/*/-->
 <script>
   //菜单按钮
   $('.menu.toggle').click(function () {

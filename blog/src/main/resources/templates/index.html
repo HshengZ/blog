@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <title>首页</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
@@ -10,7 +10,7 @@
 <body >
     <!--导航-->
     <!--头部导航-->
-    <nav class="ui attached segment m-padded-tb-mini m-shadow-small animated pulse " >
+    <nav  th:replace="_fragments :: menu(1)" class="ui attached segment m-padded-tb-mini m-shadow-small animated pulse " >
         <div class="ui container">
             <div class="ui secondary stackable menu">
                 <h1 class="ui teal header item">HshengZ</h1>
@@ -47,12 +47,46 @@
                                 <h3 class="ui blue header">博客</h3>
                             </div>
                             <div class="right aligned column">
-                                共 <h2 class="ui orange header m-inline-block"> 14 </h2>篇
+                                共 <h2 class="ui orange header m-inline-block" th:text="${page.totalElements}"> 14 </h2>篇
                             </div>
                         </div>
                     </div>
                     <!--content-->
                     <div class="ui attached segment ">
+                        <div class="ui padded vertical segment m-padded-tb-large" th:each="blog :${page.content}">
+                            <div class="ui mobile reversed stackable grid " >
+                                <div class="eleven wide column">
+                                    <h3 class="ui header"><a href="" class="m-black" th:href="@{/blog/{id}(id=${blog.id})}" th:text="${blog.title}">愿你编码半生，归来仍是少年</a></h3>
+                                    <p th:text="|${blog.description}.....|">多年以后，愿你的城市有清风有烈酒，也有人是你的归途，愿你编码半生，归来仍是少年，愿时机已成熟，已是枝繁叶茂！......</p>
+                                    <div class="ui stackable grid">
+                                        <div class="eleven wide column">
+                                            <div class="ui horizontal link list">
+                                                <div class="item">
+                                                    <img th:src="@{${blog.user.avatar}}" src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1592219452&di=f67e23384769c971cfe42ce7da23fdbe&src=http://wechat.shwilling.com/uploads/ueditor/image/20160821/1471760931761147.jpg" alt="" class="ui avatar image">
+                                                    <div class="content"><a href="#" class="header" th:text="${blog.user.nickname}">HshengZ</a></div>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="calendar icon"></i><span th:text="${#dates.format(blog.updateTime,'yyyy:MM:dd')}">2020-6-15</span>
+                                                </div>
+                                                <div class="item">
+                                                    <i class="eye icon"></i><span th:text="${blog.views}">123</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right aligned five wide column">
+                                            <a href="#" th:href="@{/types/{id}(id=${blog.type.id})}" th:text="${blog.type.name}" target="_blank" class="ui teal basic label m-padded-tb-tiny m-text-thin">认知升级</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right aligned five wide column">
+                                    <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
+                                        <img class="ui rounded image" th:src="@{${blog.firstPicture}}" src="https://i.picsum.photos/id/1035/5854/3903.jpg?hmac=DV0AS2MyjW6ddofvSIU9TVjj1kewfh7J3WEOvflY8TM" alt="" >
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--/*-->
                         <div class="ui padded vertical segment m-padded-tb-large">
                             <div class="ui mobile reversed stackable grid">
                                 <div class="eleven wide column">
@@ -79,7 +113,7 @@
                                     </div>
                                 </div>
                                 <div class="right aligned five wide column">
-                                    <a href="/blog/4" target="_blank">
+                                    <a href="#" target="_blank">
                                         <img src="https://i.picsum.photos/id/1035/5854/3903.jpg?hmac=DV0AS2MyjW6ddofvSIU9TVjj1kewfh7J3WEOvflY8TM" alt="" class="ui rounded image">
                                     </a>
 
@@ -152,51 +186,19 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="ui padded vertical segment m-padded-tb-large">
-                            <div class="ui mobile reversed stackable grid">
-                                <div class="eleven wide column">
-                                    <h3 class="ui header">愿你编码半生，归来仍是少年</h3>
-                                    <p>多年以后，愿你的城市有清风有烈酒，也有人是你的归途，愿你编码半生，归来仍是少年，愿时机已成熟，已是枝繁叶茂！......</p>
-                                    <div class="ui stackable grid">
-                                        <div class="eleven wide column">
-                                            <div class="ui horizontal link list">
-                                                <div class="item">
-                                                    <img src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1592219452&di=f67e23384769c971cfe42ce7da23fdbe&src=http://wechat.shwilling.com/uploads/ueditor/image/20160821/1471760931761147.jpg" alt="" class="ui avatar image">
-                                                    <div class="content"><a href="#" class="header">HshengZ</a></div>
-                                                </div>
-                                                <div class="item">
-                                                    <i class="calendar icon"></i>2020-6-15
-                                                </div>
-                                                <div class="item">
-                                                    <i class="eye icon"></i>123
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="right aligned five wide column">
-                                            <a href="#" target="_blank" class="ui teal basic label m-padded-tb-tiny m-text-thin">认知升级</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="right aligned five wide column">
-                                    <a href="/blog/4" target="_blank">
-                                        <img src="https://i.picsum.photos/id/1035/5854/3903.jpg?hmac=DV0AS2MyjW6ddofvSIU9TVjj1kewfh7J3WEOvflY8TM" alt="" class="ui rounded image">
-                                    </a>
-
-                                </div>
-                            </div>
-                        </div>
+                        <!--*/-->
                     </div>
                     <!--footer-->
-                    <div class="ui bottom  attached segment">
-                        <div class="ui middle aligned three column grid">
+                    <div class="ui bottom  attached segment" th:if="${page.totalPages}>1">
+                        <div class="ui middle aligned three column grid ">
                             <div class="column">
-                                <a href="#" class="ui mini blue  basic button">上一页</a>
+                                <a href="#" th:href="@{/(page=${page.number}-1)}" th:unless="${page.first}" class="ui mini blue  basic button">上一页</a>
                             </div>
                             <div class="column center aligned">
-                                <p>1/3</p>
+                                <p ><b><span th:text="${page.number}">1</span></b>/<span th:text="${page.totalPages}">3</span></p>
                             </div>
                             <div class="right aligned column">
-                                <a href="#" class="ui mini blue  basic button">下一页</a>
+                                <a href="#" th:href="@{/(page=${page.number}+1)}" th:unless="${page.last}" class="ui mini blue  basic button">下一页</a>
                             </div>
                         </div>
                     </div>
@@ -211,12 +213,17 @@
                                     <i class="idea icon"></i>分类
                                 </div>
                                 <div class="right aligned column">
-                                    <a href="types/-1" target="_blank">more <i class="angle double right icon"></i></a>
+                                    <a href="#"  th:href="@{/types/-1}" target="_blank">more <i class="angle double right icon"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="ui blue segment ">
-                            <div class="ui fluid vertical menu" >
+                            <div class="ui fluid vertical menu"  >
+                                <a href="#" th:href="@{/types/{id}(id=${type.id})}" class="item" th:each="type :${types}">
+                                    <span th:text="${type.name}">学习日志</span>
+                                    <div class="ui blue basic left pointing label" th:text="${#arrays.length(type.blogs)}">13</div>
+                                </a>
+                                <!--/*-->
                                 <a href="#" class="item">学习日志
                                     <div class="ui blue basic left pointing label">13</div>
                                 </a>
@@ -226,6 +233,10 @@
                                 <a href="#" class="item">学习日志
                                     <div class="ui blue basic left pointing label">13</div>
                                 </a>
+                                <a href="#" class="item">学习日志
+                                    <div class="ui blue basic left pointing label">13</div>
+                                </a>
+                                <!--*/-->
                             </div>
                         </div>
                     </div>
@@ -237,13 +248,18 @@
                                     <i class="tags icon"></i>标签
                                 </div>
                                 <div class="right aligned column">
-                                    <a href="types/-1" target="_blank">more <i class="angle double right icon"></i></a>
+                                    <a href="#" th:href="@{/tags/-1}" target="_blank">more <i class="angle double right icon"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="blue ui segment">
+                            <a href="#" th:href="@{/tags/{id}(id=${tag.id})}" class="ui blue basic left pointing label m-margin-tb-tiny" th:each="tag:${tags}">
+                                <span th:text="${tag.name}">方法论 </span>
+                            <div class="detail" th:text="${#arrays.length(tag.blogs)}">23</div>
+                            </a>
+                            <!--/*-->
                             <a href="#" class="ui blue basic left pointing label m-margin-tb-tiny">方法论
-                            <div class="detail">23</div>
+                                <div class="detail">23</div>
                             </a>
                             <a href="#" class="ui blue basic left pointing label m-margin-tb-tiny">方法论
                                 <div class="detail">23</div>
@@ -251,24 +267,40 @@
                             <a href="#" class="ui blue basic left pointing label m-margin-tb-tiny">方法论
                                 <div class="detail">23</div>
                             </a>
-                            <a href="#" class="ui blue basic left pointing label m-margin-tb-tiny">方法论
-                                <div class="detail">23</div>
-                            </a>
+                            <!--*/-->
                         </div>
                     </div>
                     <!--最新推荐-->
                     <div class="ui segments m-margin-top-large animated bounceInRight">
-                        <div class="ui secondary segment ">
-                            <i class="bookmark icon"></i>最新推荐
+                        <div class="ui secondary segment">
+                            <div class="ui two column grid">
+                                <div class="column">
+                                    <i class="file alternate icon"></i>最新推荐
+                                </div>
+                            </div>
                         </div>
-                        <div class="ui segment">
-                            <a href="/blog/13" class="m-black m-text-thin" >Java反射机制</a>
+                        <div class="ui segment" th:each="recommendBlog : ${recommendBlogs}">
+                            <a href="#" th:href="@{/blog/{id}(id=${recommendBlog.id})}" class="m-black m-text-thin" th:text="${recommendBlog.title}">Java反射机制</a>
                         </div>
+                        <!--/*-->
+                        <div class="ui segment" >
+                            <a href="#"  class="m-black m-text-thin" >Java反射机制</a>
+                        </div>
+                        <div class="ui segment" >
+                            <a href="#"  class="m-black m-text-thin" >Java反射机制</a>
+                        </div>
+                        <div class="ui segment" >
+                            <a href="#"  class="m-black m-text-thin" >Java反射机制</a>
+                        </div>
+                        <div class="ui segment" >
+                            <a href="#"  class="m-black m-text-thin" >Java反射机制</a>
+                        </div>
+                        <!--*/-->
                     </div>
                     <!--二维码-->
                     <h4 class="ui horizontal divider header m-margin-top-large">扫码关注我</h4>
                     <div class="ui centered card animated bounceInUp" style="width: 11em">
-                        <img src="../static/image/wechat.png" alt="" class="ui rounded image" >
+                        <img src="../static/image/wechat.png" th:src="@{/image/wechat.png}" alt="" class="ui rounded image" >
                     </div>
                 </div>
             </div>
@@ -276,7 +308,7 @@
     </div>
 
     <!--底部-->
-    <footer class="ui inverted vertical segment m-padded-tb-massive m-opacity">
+    <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive m-opacity">
       <div class="ui center aligned container">
           <div class="ui inverted divided stackable grid">
               <div class="three wide column">
@@ -307,9 +339,10 @@
           <p class="m-text-thin m-opacity">备案号ddddddddd</p>
       </div>
     </footer>
-
-<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
     <script>
         $('.menu.toggle').click(function () {
             $('.m-item').toggleClass('m-mobile-hide');

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="_fragments :: head(~{::title})">
     <meta charset="UTF-8">
     <title>关于我</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
@@ -9,7 +9,7 @@
 <body class="types-bg">
     <!--导航-->
     <!--头部导航-->
-    <nav class="ui attached segment m-padded-tb-mini m-shadow-small" >
+    <nav th:replace="_fragments :: menu(5)" class="ui attached segment m-padded-tb-mini m-shadow-small" >
         <div class="ui container">
             <div class="ui secondary stackable menu">
                 <h1 class="ui black header item">HshengZ</h1>
@@ -39,7 +39,7 @@
            <div class="ui stackable grid">
                <div class="eleven wide column">
                    <div class="ui segment">
-                       <img src="../static/image/aboutMe.jpg" alt="" class="ui rounded image">
+                       <img src="../static/image/aboutMe.jpg" th:src="@{/image/aboutMe.jpg}" alt="" class="ui rounded image">
                    </div>
                </div>
                <div class="five wide column">
@@ -81,7 +81,7 @@
     </div>
 
     <!--底部-->
-    <footer class="ui inverted vertical segment m-padded-tb-massive m-opacity" style="flex: 1 0 auto">
+    <footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive m-opacity" style="flex: 1 0 auto">
       <div class="ui center aligned container">
           <div class="ui inverted divided stackable grid">
               <div class="three wide column">
@@ -112,9 +112,10 @@
           <p class="m-text-thin m-opacity">备案号ddddddddd</p>
       </div>
     </footer>
-
+    <!--/*/<th:block th:replace="_fragments :: script">/*/-->
 <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+    <!--/*/</th:block>/*/-->
     <script>
         //菜单按钮
         $('.menu.toggle').click(function () {
